@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en" class="dark bg-bg text-text">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ADCD Test & Tag — Sunshine Coast</title>
+  <meta name="description" content="Fast, compliant electrical test & tag on the Sunshine Coast. 7 days, after-hours, no call-out fees, per-item pricing, obligation-free quotes." />
+
+  <!-- Tailwind Play CDN (must be first) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind config -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        container: { center: true, padding: '1rem', screens: { '2xl': '1200px' } },
+        extend: {
+          colors: {
+            bg:'#0F0F0F', surface:'#151515','surface-alt':'#1B1B1B',
+            text:'#FFFFFF','text-muted':'#CFCFCF', border:'#2A2A2A',
+            accent:{ DEFAULT:'#e25825', hover:'#f06b3a', on:'#0B0B0B' },
+            success:'#31C48D', warning:'#F6C259', error:'#EF5350', info:'#5AB0F7'
+          },
+          fontFamily:{ display:['Inter','Helvetica Neue','Arial','sans-serif'], body:['Inter','Helvetica Neue','Arial','sans-serif'] },
+          fontSize:{
+            h1:['48px',{lineHeight:'1.1',letterSpacing:'0.02em'}],
+            h2:['36px',{lineHeight:'1.15',letterSpacing:'0.02em'}],
+            h3:['24px',{lineHeight:'1.2'}],
+            lead:['18px',{lineHeight:'1.6'}],
+            base:['16px',{lineHeight:'1.7'}],
+            sm:['14px',{lineHeight:'1.6'}]
+          },
+          spacing:{ xs:'8px', sm:'12px', md:'16px', lg:'24px', xl:'32px', '2xl':'48px', '3xl':'72px' },
+          borderRadius:{ sm:'4px', md:'6px', lg:'8px' },
+          boxShadow:{ elev1:'0 4px 14px rgba(0,0,0,0.35)', focus:'0 0 0 2px rgba(226,88,37,0.45)' },
+          transitionTimingFunction:{ brand:'cubic-bezier(0.22, 1, 0.36, 1)' },
+          transitionDuration:{ fast:'120ms', brand:'220ms', slow:'320ms' }
+        }
+      }
+    }
+  </script>
+
+  <!-- Component classes -->
+  <style type="text/tailwindcss">
+    @layer components {
+      .btn-primary { @apply inline-flex items-center gap-2 bg-accent text-accent-on font-extrabold uppercase rounded-sm px-7 py-3 transition-transform duration-brand ease-brand hover:bg-accent-hover hover:-translate-y-px focus:shadow-focus; }
+      .btn-secondary { @apply inline-flex items-center gap-2 border border-white text-text font-bold uppercase rounded-sm px-7 py-3 hover:bg-white/5 transition duration-brand ease-brand; }
+      .nav-link { @apply uppercase text-sm font-bold tracking-wide hover:text-accent transition-colors duration-brand ease-brand; }
+      .card { @apply bg-surface rounded-md p-xl border border-border hover:shadow-elev1 hover:border-accent transition duration-brand ease-brand; }
+      .rule-accent { @apply h-3 bg-accent; }
+      .h1 { @apply font-display font-extrabold uppercase text-h1; }
+      .h2 { @apply font-display font-extrabold uppercase text-h2; }
+      .h3 { @apply font-display font-extrabold uppercase text-h3; }
+      .lead { @apply font-body text-lead text-text-muted; }
+      .badge-mono img { @apply grayscale opacity-80 h-5; }
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-bg text-text">
+
+  <div data-header-include></div>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-accent/10 pointer-events-none"></div>
+    <div class="container grid grid-cols-1 md:grid-cols-2 gap-8 py-12 md:py-20">
+      <div class="space-y-6" data-reveal>
+        <h1 class="h1">Compliant Test & Tag. Fast. No Fuss.</h1>
+        <p class="lead max-w-xl">
+          7 days • After-hours available • No call-out fees • Per-item pricing • Obligation-free quotes.
+          Licensed in QLD to test & tag electrical appliances and RCDs for workplaces.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="contact.html" class="btn-primary">Get a Quote →</a>
+          <a href="tel:0458104057" class="btn-secondary">Call 0458&nbsp;104&nbsp;057</a>
+        </div>
+        <ul class="grid sm:grid-cols-2 gap-3 text-sm text-text-muted">
+          <li>✓ Workplace compliance documentation supplied</li>
+          <li>✓ Latest technology test instruments</li>
+          <li>✓ Friendly, on-time, professional</li>
+          <li>✓ Sunshine Coast & surrounds</li>
+        </ul>
+      </div>
+      <div class="relative" data-reveal>
+        <div class="relative bg-accent aspect-[4/5] overflow-hidden rounded-md">
+          <img src="assets/hero.jpg" alt="Test & tag equipment" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-90">
+          <div class="absolute bottom-0 left-0 right-0 h-3 bg-accent"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlights -->
+  <section class="bg-surface-alt py-12 md:py-16">
+    <div class="container">
+      <div class="mb-8" data-reveal>
+        <h2 class="h2">Why Businesses Choose ADCD</h2>
+        <div class="rule-accent mt-3"></div>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <article class="card" data-reveal>
+          <div class="mb-4 w-10 h-10 rounded-sm bg-accent flex items-center justify-center">🕒</div>
+          <h3 class="h3 mb-2">7 Days & After-Hours</h3>
+          <p class="text-text-muted">We work around your schedule to minimise downtime, including evenings.</p>
+        </article>
+        <article class="card" data-reveal>
+          <div class="mb-4 w-10 h-10 rounded-sm bg-accent flex items-center justify-center">💲</div>
+          <h3 class="h3 mb-2">No Call-Out Fees</h3>
+          <p class="text-text-muted">Simple per-item pricing and clear quotes before we start.</p>
+        </article>
+        <article class="card" data-reveal>
+          <div class="mb-4 w-10 h-10 rounded-sm bg-accent flex items-center justify-center">✅</div>
+          <h3 class="h3 mb-2">QLD Licensed</h3>
+          <p class="text-text-muted">Licensed to test & tag electrical equipment and RCDs for workplaces.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-12 md:py-16">
+    <div class="container">
+      <div class="mb-8" data-reveal>
+        <h2 class="h2">Trusted by Local Businesses</h2>
+        <div class="rule-accent mt-3"></div>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <figure class="card" data-reveal>
+          <blockquote class="text-base text-text/90">“Swift, professional, and paperwork sorted on the spot. Zero disruption to our team.”</blockquote>
+          <figcaption class="mt-4 text-sm text-text-muted">— Cafe Owner, Maroochydore</figcaption>
+        </figure>
+        <figure class="card" data-reveal>
+          <blockquote class="text-base text-text/90">“After-hours service meant we stayed open. Pricing was fair and transparent.”</blockquote>
+          <figcaption class="mt-4 text-sm text-text-muted">— Retail Manager, Caloundra</figcaption>
+        </figure>
+        <figure class="card" data-reveal>
+          <blockquote class="text-base text-text/90">“Clear tagging, clean documentation, and reminders for next cycle.”</blockquote>
+          <figcaption class="mt-4 text-sm text-text-muted">— Clinic Director, Noosa</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <div data-footer></div>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!-- partials/header.html -->
+<header data-header class="sticky top-0 z-50 bg-bg/60">
+  <!-- Utility bar -->
+  <div class="w-full h-9 bg-surface text-sm text-text-muted border-b border-border">
+    <div class="container h-full flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <span class="hidden md:inline">📍 Sunshine Coast, QLD</span>
+        <a href="tel:0458104057" class="hover:text-accent">📞 0458 104 057</a>
+        <a href="mailto:neeld@westnet.com" class="hover:text-accent">✉️ neeld@westnet.com</a>
+      </div>
+      <div class="hidden md:flex items-center gap-3">
+        <a class="hover:text-accent" href="#">LinkedIn</a>
+        <a class="hover:text-accent" href="#">Instagram</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main nav -->
+  <div class="w-full h-18 bg-bg/80">
+    <div class="container h-18 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="assets/logo.png" alt="ADCD Test & Tag" class="h-7 rounded-sm">
+        <span class="font-extrabold tracking-wide uppercase">ADCD Test & Tag</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="services.html">Services</a>
+        <a class="nav-link" href="contact.html">Contact</a>
+      </nav>
+      <div class="hidden md:flex items-center gap-3">
+        <a href="tel:0458104057" class="btn-secondary">Call Now</a>
+        <a href="contact.html" class="btn-primary">Get a Quote</a>
+      </div>
+      <button data-mobile-btn aria-expanded="false" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-sm border border-border">
+        <span class="sr-only">Toggle menu</span>☰
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div data-mobile-menu data-open="false" class="md:hidden fixed inset-x-0 top-[72px] bg-bg/95 border-t border-border opacity-0 pointer-events-none transition duration-200">
+    <div class="container py-4 space-y-2">
+      <a class="block nav-link" href="index.html">Home</a>
+      <a class="block nav-link" href="services.html">Services</a>
+      <a class="block nav-link" href="contact.html">Contact</a>
+      <div class="pt-3 flex gap-3">
+        <a href="tel:0458104057" class="btn-secondary w-full">Call Now</a>
+        <a href="contact.html" class="btn-primary w-full">Get a Quote</a>
+      </div>
+    </div>
+  </div>
+</header>
