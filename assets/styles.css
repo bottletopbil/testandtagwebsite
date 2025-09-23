@@ -135,17 +135,16 @@ h6 {
 }
 
 .eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.35rem 0.85rem;
-  border-radius: var(--radius-pill);
-  background-color: rgba(226, 88, 37, 0.12);
+  display: block; /* Change from inline-flex */
+  padding-bottom: 0.75rem; /* Add space below */
+  border-bottom: 2px solid var(--color-accent); /* Add the underline */
   color: var(--color-accent);
-  font-size: 0.82rem;
-  font-weight: 600;
+  font-size: 0.85rem;
+  font-weight: 700; /* Make it a bit bolder */
   text-transform: uppercase;
   letter-spacing: 0.08em;
+  margin-bottom: 1rem; /* Space between underline and main title */
+  max-width: max-content; /* Make the underline fit the text */
 }
 
 .btn-primary,
@@ -299,8 +298,10 @@ h6 {
 }
 
 .brand img {
-  border-radius: var(--radius-sm);
+  height: 38px;
+  width: auto;
   box-shadow: var(--shadow-card-soft);
+  border-radius: var(--radius-sm); /* Re-add the rounded corners */
 }
 
 .brand-copy {
@@ -606,17 +607,11 @@ h6 {
   background-color: var(--color-surface);
   border: 1px solid rgba(221, 228, 242, 0.7);
   box-shadow: var(--shadow-card-soft);
+  display: flex; /* Add flex to help with structure */
+  flex-direction: column; /* Stack items vertically */
+  justify-content: space-between; /* Push author to the bottom */
 }
 
-.testimonial-card::before {
-  content: '“';
-  position: absolute;
-  top: 1.2rem;
-  left: 1.8rem;
-  font-size: 3rem;
-  color: rgba(226, 88, 37, 0.18);
-  font-weight: 700;
-}
 
 .testimonial-text {
   color: var(--color-text);
@@ -631,25 +626,72 @@ h6 {
 }
 
 .banner {
+  position: relative;
+  isolation: isolate;
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, rgba(226, 88, 37, 0.92), rgba(240, 107, 58, 0.82));
+  background: linear-gradient(135deg, rgba(226, 88, 37, 0.95), rgba(240, 107, 58, 0.8));
   color: #fff;
-  padding: 2.2rem;
+  padding: clamp(2.4rem, 3vw, 3rem);
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: clamp(1.6rem, 3vw, 2.4rem);
   box-shadow: var(--shadow-card);
+  overflow: hidden;
 }
 
-.banner p {
+.banner::after {
+  content: '';
+  position: absolute;
+  inset: -20% 0 -40% 0;
+  background: radial-gradient(circle at 15% 25%, rgba(255, 255, 255, 0.18), transparent 60%),
+    radial-gradient(circle at 85% 30%, rgba(255, 255, 255, 0.14), transparent 65%);
+  opacity: 0.85;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.banner__content,
+.banner__actions {
+  position: relative;
+  z-index: 1;
+}
+
+.banner__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 38rem;
+}
+
+.banner__eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.banner__title {
+  font-size: clamp(1.9rem, 4vw, 2.5rem);
+  line-height: 1.15;
+}
+
+.banner__description {
   font-size: 1.05rem;
-  line-height: 1.6;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.92);
 }
 
 .banner-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.9rem;
+  gap: clamp(0.85rem, 2vw, 1.15rem);
+  align-items: stretch;
+}
+
+.banner__actions {
+  flex-shrink: 0;
+  justify-content: center;
 }
 
 .banner .btn-secondary {
@@ -662,6 +704,21 @@ h6 {
 .banner .btn-secondary:hover,
 .banner .btn-secondary:focus-visible {
   border-color: #fff;
+}
+
+@media (min-width: 768px) {
+  .banner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: clamp(2.6rem, 4vw, 3.4rem);
+  }
+
+  .banner__actions {
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 16rem;
+  }
 }
 
 .info-card {
@@ -780,31 +837,53 @@ h6 {
   color: var(--color-text);
 }
 
+/* ---------- Redesigned Footer Section (Alternative Light Theme) ---------- */
+
 .footer {
   margin-top: 6rem;
-  background-color: var(--color-surface);
-  border-top: 1px solid rgba(215, 222, 234, 0.8);
+  background-color: var(--color-surface-alt); /* Changed to the light blue-grey */
+  color: var(--color-text-muted);
+  padding: clamp(3rem, 6vw, 4rem) 0;
+  border-top: 1px solid var(--color-border-strong); /* A slightly stronger top border */
+  font-size: 0.95rem;
+}
+
+.footer .container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 }
 
 .footer-top {
-  padding: 3.2rem 0;
-}
-
-.footer-grid {
   display: grid;
-  gap: clamp(1.8rem, 4vw, 2.6rem);
+  gap: 2.5rem;
 }
 
-@media (min-width: 960px) {
-  .footer-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+@media (min-width: 768px) {
+  .footer-top {
+    grid-template-columns: 2fr 1fr 1fr;
   }
+}
+
+.footer-column--brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .footer-brand {
   display: flex;
   align-items: center;
   gap: 0.85rem;
+  color: var(--color-text);
+}
+
+.footer-brand .brand-title {
+  font-size: 1.05rem;
+}
+
+.footer-brand .brand-sub {
+  color: var(--color-text-soft);
 }
 
 .footer-brand__mark {
@@ -812,26 +891,24 @@ h6 {
   box-shadow: var(--shadow-card-soft);
 }
 
-.footer-column {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  color: var(--color-text-muted);
+.footer-blurb {
+  max-width: 30ch;
+  line-height: 1.6;
 }
 
 .footer-title {
   font-weight: 600;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-text);
+  margin-bottom: 1rem;
 }
 
 .footer-links {
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
-  font-size: 0.94rem;
+  gap: 0.65rem;
 }
 
 .footer-links a {
@@ -843,30 +920,44 @@ h6 {
 }
 
 .footer-bottom {
-  border-top: 1px solid rgba(215, 222, 234, 0.7);
-  padding: 1.4rem 0;
-  font-size: 0.85rem;
-  color: var(--color-text-soft);
-}
-
-.footer-bottom__inner {
+  border-top: 1px solid var(--color-border);
+  padding-top: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
 }
 
 @media (min-width: 768px) {
-  .footer-bottom__inner {
+  .footer-bottom {
     flex-direction: row;
-    align-items: center;
     justify-content: space-between;
+    text-align: left;
+  }
+}
+
+.footer-legal {
+  font-size: 0.85rem;
+  color: var(--color-text-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+@media (min-width: 768px) {
+  .footer-legal span {
+    display: inline;
+  }
+  .footer-legal span::before {
+    content: ' • ';
+    margin: 0 0.25rem;
   }
 }
 
 .social-links {
   display: flex;
-  gap: 0.8rem;
-  font-size: 0.95rem;
+  gap: 1rem;
 }
 
 .social-links a {
@@ -876,7 +967,6 @@ h6 {
 .social-links a:hover {
   color: var(--color-accent);
 }
-
 /* ---------- Page layout ---------- */
 
 .page {
@@ -1221,6 +1311,11 @@ details.faq-item[open] .faq-icon {
   .banner-actions {
     flex-direction: column;
     align-items: stretch;
+    width: 100%;
+  }
+
+  .banner__actions {
+    width: 100%;
   }
 }
 
@@ -1289,4 +1384,77 @@ details.faq-item[open] .faq-icon {
   .banner-actions {
     flex-direction: column;
   }
+}
+
+/* ---------- Alternating Features Section ---------- */
+
+.alternating-features {
+  display: grid;
+  gap: clamp(3rem, 6vw, 5rem); /* Creates space between the two feature rows */
+  padding: 2rem 0; /* Adds some vertical breathing room */
+}
+
+.alternating-feature {
+  display: grid;
+  gap: clamp(1.8rem, 4vw, 2.8rem);
+  align-items: center;
+}
+
+/* On larger screens, create the 2-column layout */
+@media (min-width: 768px) {
+  .alternating-feature {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* This is the magic: it flips the order of the image on every second feature */
+  .alternating-feature:nth-child(even) .alternating-feature__image {
+    order: 2;
+  }
+}
+
+/* Add this new rule for the container */
+.alternating-feature__image {
+  aspect-ratio: 1 / 1; /* This forces the container into a square */
+  max-height: 450px; /* Optional: Prevents the image from getting too tall on large screens */
+}
+
+/* Replace your old rule with this updated one */
+.alternating-feature__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This makes the image fill the square container, cropping the excess */
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.alternating-feature__text {
+  display: grid;
+  gap: 1rem;
+}
+
+.alternating-feature__text h3 {
+  font-size: clamp(1.6rem, 3vw, 1.9rem);
+  letter-spacing: -0.01em;
+}
+
+.alternating-feature__text p {
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  max-width: 35rem; /* Keeps text readable */
+}
+
+.alternating-feature__text .btn-ghost {
+  justify-self: start; /* Aligns the button to the left */
+}
+
+/* ---------- Star Rating ---------- */
+
+/* ---------- Star Rating ---------- */
+
+.star-rating {
+  color: #f59e0b;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  letter-spacing: 0.5rem; /* Add this line to create space between stars */
 }
