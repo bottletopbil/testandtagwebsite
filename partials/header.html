@@ -1,51 +1,58 @@
-<!-- partials/header.html -->
-<header data-header class="sticky top-0 z-50 bg-bg/60">
-  <!-- Utility bar -->
-  <div class="w-full h-9 bg-surface text-sm text-text-muted border-b border-border">
-    <div class="container h-full flex items-center justify-between">
-      <div class="flex items-center gap-4">
-        <span class="hidden md:inline">📍 Sunshine Coast, QLD</span>
-        <a href="tel:0458104057" class="hover:text-accent">📞 0458 104 057</a>
-        <a href="mailto:neeld@westnet.com" class="hover:text-accent">✉️ neeld@westnet.com</a>
-      </div>
-      <div class="hidden md:flex items-center gap-3">
-        <a class="hover:text-accent" href="#">LinkedIn</a>
-        <a class="hover:text-accent" href="#">Instagram</a>
+<header data-header class="site-header">
+  <div class="header-top">
+    <div class="container header-top__inner">
+      <p class="header-note">
+        <strong>Sunshine Coast technicians</strong>
+        <span>Same-day quotes • Compliance paperwork supplied</span>
+      </p>
+      <div class="header-links">
+        <a class="header-link" href="tel:0458104057">0458 104 057</a>
+        <a class="header-link" href="mailto:neeld@westnet.com">neeld@westnet.com</a>
       </div>
     </div>
   </div>
 
-  <!-- Main nav -->
-  <div class="w-full h-18 bg-bg/80">
-    <div class="container h-18 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-3">
-        <img src="assets/logo.png" alt="ADCD Test & Tag" class="h-7 rounded-sm">
-        <span class="font-extrabold tracking-wide uppercase">ADCD Test & Tag</span>
+  <div class="header-main">
+    <div class="container header-main__inner">
+      <a href="index.html" class="brand">
+        <img src="assets/logo.png" alt="ADCD Test & Tag logo" width="36" height="36" />
+        <div class="brand-copy">
+          <span class="brand-title">ADCD Test & Tag</span>
+          <span class="brand-sub">QLD licensed & insured</span>
+        </div>
       </a>
-      <nav class="hidden md:flex items-center gap-6">
+      <nav class="main-nav">
         <a class="nav-link" href="index.html">Home</a>
         <a class="nav-link" href="services.html">Services</a>
+        <a class="nav-link" href="why-test-and-tag.html">Why Test & Tag?</a>
+        <a class="nav-link" href="faq.html">FAQ</a>
         <a class="nav-link" href="contact.html">Contact</a>
       </nav>
-      <div class="hidden md:flex items-center gap-3">
-        <a href="tel:0458104057" class="btn-secondary">Call Now</a>
-        <a href="contact.html" class="btn-primary">Get a Quote</a>
+      <div class="header-cta">
+        <a href="tel:0458104057" class="btn-secondary">Call us</a>
+        <a href="contact.html" class="btn-primary">Book a visit</a>
       </div>
-      <button data-mobile-btn aria-expanded="false" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-sm border border-border">
-        <span class="sr-only">Toggle menu</span>☰
+      <button data-mobile-btn aria-expanded="false" class="mobile-trigger">
+        <span class="sr-only">Toggle menu</span>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
       </button>
     </div>
   </div>
 
-  <!-- Mobile menu -->
-  <div data-mobile-menu data-open="false" class="md:hidden fixed inset-x-0 top-[72px] bg-bg/95 border-t border-border opacity-0 pointer-events-none transition duration-200">
-    <div class="container py-4 space-y-2">
-      <a class="block nav-link" href="index.html">Home</a>
-      <a class="block nav-link" href="services.html">Services</a>
-      <a class="block nav-link" href="contact.html">Contact</a>
-      <div class="pt-3 flex gap-3">
-        <a href="tel:0458104057" class="btn-secondary w-full">Call Now</a>
-        <a href="contact.html" class="btn-primary w-full">Get a Quote</a>
+  <div data-mobile-menu data-open="false" class="mobile-menu-panel">
+    <div class="container mobile-menu__inner">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="services.html">Services</a>
+      <a class="nav-link" href="why-test-and-tag.html">Why Test & Tag?</a>
+      <a class="nav-link" href="faq.html">FAQ</a>
+      <a class="nav-link" href="contact.html">Contact</a>
+      <div class="mobile-menu__actions">
+        <a href="tel:0458104057" class="btn-secondary">Call us</a>
+        <a href="contact.html" class="btn-primary">Book a visit</a>
       </div>
     </div>
   </div>

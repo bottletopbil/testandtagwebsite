@@ -1,145 +1,97 @@
 <!doctype html>
-<html lang="en" class="dark bg-bg text-text">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contact — ADCD Test & Tag</title>
-  <meta name="description" content="Contact ADCD Test & Tag. 7 days, after-hours, no call-out fees, per-item pricing. Licensed for workplace compliance across the Sunshine Coast." />
+  <meta name="description" content="Request a quote or book a site visit with ADCD Test & Tag. Licensed Sunshine Coast technicians with 7-day availability and no call-out fees." />
 
-  <!-- Tailwind Play CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Tailwind config -->
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        container: { center: true, padding: '1rem', screens: { '2xl': '1200px' } },
-        extend: {
-          colors: {
-            bg:'#0F0F0F', surface:'#151515','surface-alt':'#1B1B1B',
-            text:'#FFFFFF','text-muted':'#CFCFCF', border:'#2A2A2A',
-            accent:{ DEFAULT:'#e25825', hover:'#f06b3a', on:'#0B0B0B' }
-          },
-          fontFamily:{ display:['Inter','Helvetica Neue','Arial','sans-serif'], body:['Inter','Helvetica Neue','Arial','sans-serif'] },
-          boxShadow:{ elev1:'0 4px 14px rgba(0,0,0,0.35)', focus:'0 0 0 2px rgba(226,88,37,0.45)' },
-          transitionTimingFunction:{ brand:'cubic-bezier(0.22, 1, 0.36, 1)' },
-          transitionDuration:{ fast:'120ms', brand:'220ms', slow:'320ms' },
-          borderRadius:{ sm:'4px', md:'6px', lg:'8px' },
-          fontSize:{
-            h2:['36px',{lineHeight:'1.15',letterSpacing:'0.02em'}]
-          }
-        }
-      }
-    }
-  </script>
-
-  <!-- Component classes -->
-  <style type="text/tailwindcss">
-    @layer components {
-      .btn-primary { @apply inline-flex items-center justify-center gap-2 bg-accent text-accent-on font-extrabold uppercase rounded-sm px-7 py-3 transition-transform duration-brand ease-brand hover:bg-accent-hover hover:-translate-y-px focus:shadow-focus; }
-      .btn-secondary { @apply inline-flex items-center justify-center gap-2 border border-white text-text font-bold uppercase rounded-sm px-7 py-3 hover:bg-white/5 transition duration-brand ease-brand; }
-      .nav-link { @apply uppercase text-sm font-bold tracking-wide hover:text-accent transition-colors duration-brand ease-brand; }
-      .card { @apply bg-surface rounded-md p-8 border border-border; }
-      .label { @apply text-sm font-semibold uppercase text-text-muted; }
-      .field { @apply w-full bg-[#1A1A1A] text-text placeholder-transparent border border-[#333333] rounded-sm px-[14px] py-3 focus:outline-none focus:ring-0 focus:border-accent transition; }
-      .float-wrap { @apply relative; }
-      .float-label { @apply absolute left-[14px] top-3 text-sm text-text-muted transition-all pointer-events-none; }
-      .float-input:focus + .float-label,
-      .float-input:not(:placeholder-shown) + .float-label { @apply -translate-y-3 text-xs opacity-90; }
-      .h2 { @apply font-display font-extrabold uppercase text-h2; }
-      .rule-accent { @apply h-3 bg-accent; }
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
 </head>
-<body class="min-h-screen bg-bg text-text">
+<body>
 
   <div data-header-include></div>
 
-  <!-- Main -->
-  <main class="container py-12 md:py-16">
-    <div class="mb-8">
-      <h2 class="h2">Get in Touch</h2>
-      <div class="rule-accent mt-3"></div>
-    </div>
-
-    <div class="grid md:grid-cols-2 gap-10">
-      <!-- Form -->
-      <form id="contact-form" class="space-y-5 card"
-      action="https://formsubmit.co/contactformtestemail@frostmail.cloud"
-      method="POST">
-    
-      <!-- FormSubmit options -->
-      <input type="hidden" name="_subject" value="ADCD Website Enquiry">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_captcha" value="false">
-    
-      <!-- Honeypot spam trap (bots fill it; humans don't) -->
-      <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off">
-    
-      <!-- your existing fields (unchanged) -->
-      <div class="grid sm:grid-cols-2 gap-4">
-        <div class="float-wrap">
-          <input class="field float-input" id="name" type="text" name="name" placeholder=" " required />
-          <label class="float-label" for="name">Name</label>
-        </div>
-        <div class="float-wrap">
-          <input class="field float-input" id="email" type="email" name="email" placeholder=" " required />
-          <label class="float-label" for="email">Email</label>
-        </div>
-        <div class="float-wrap sm:col-span-2">
-          <input class="field float-input" id="phone" type="tel" name="phone" placeholder=" " />
-          <label class="float-label" for="phone">Phone</label>
-        </div>
-        <div class="float-wrap sm:col-span-2">
-          <textarea class="field float-input min-h-[140px]" id="message" name="message" placeholder=" " required></textarea>
-          <label class="float-label" for="message">How many items? Any RCDs? Preferred time?</label>
-        </div>
+  <main class="page">
+    <div class="container page__inner">
+      <div class="section-header" data-reveal>
+        <span class="eyebrow">Contact</span>
+        <h1 class="section-title">Let’s schedule your testing</h1>
+        <p class="section-subtitle">Tell us about your site and we’ll come back within 24 hours with pricing, availability, and any prep tips.</p>
       </div>
-    
-      <div class="flex flex-wrap gap-3">
-        <button type="submit" class="btn-primary" id="contact-submit">Send Message</button>
-        <a href="tel:0458104057" class="btn-secondary">Call Now</a>
-        <a href="mailto:neeld@westnet.com" class="btn-secondary">Email Us</a>
-      </div>
-    
-      <!-- inline fallback messages (kept hidden; optional) -->
-      <p id="form-success" class="text-success text-sm mt-3 hidden">
-        ✅ Thank you, your message has been sent!
-      </p>
-      <p id="form-error" class="text-error text-sm mt-3 hidden">
-        ❌ Something went wrong, please try again.
-      </p>
-    </form>
-    
 
-      <!-- Details + Map -->
-      <div class="space-y-5">
-        <div class="card">
-          <h3 class="font-bold uppercase text-sm mb-3">Licensing & Hours</h3>
-          <ul class="grid sm:grid-cols-2 gap-3 text-sm text-text-muted">
-            <li>✓ QLD Licensed to Test & Tag</li>
-            <li>✓ Competent & trained professionals</li>
-            <li>✓ 7 days • After-hours</li>
-            <li>✓ No call-out fees • Per-item pricing</li>
-          </ul>
-        </div>
+      <div class="grid-two-uneven alt">
+        <form id="contact-form" class="form-shell" action="https://formsubmit.co/contactformtestemail@frostmail.cloud" method="POST" data-reveal>
+          <input type="hidden" name="_subject" value="ADCD Website Enquiry" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" />
 
-        <div class="card overflow-hidden">
-          <h3 class="font-bold uppercase text-sm mb-3">Service Area</h3>
-          <div class="rounded-md overflow-hidden border border-border">
+          <div class="form-grid two-column">
+            <div class="form-field">
+              <label class="form-label" for="name">Name <span>(required)</span></label>
+              <input class="form-input" id="name" type="text" name="name" required />
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="email">Email <span>(required)</span></label>
+              <input class="form-input" id="email" type="email" name="email" required />
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="phone">Phone</label>
+              <input class="form-input" id="phone" type="tel" name="phone" placeholder="Optional" />
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="company">Business / Site name</label>
+              <input class="form-input" id="company" type="text" name="company" placeholder="Optional" />
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label class="form-label" for="schedule">Preferred visit window</label>
+              <input class="form-input" id="schedule" type="text" name="schedule" placeholder="e.g. Weekday after 4pm or weekend" />
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="message">Items &amp; notes</label>
+              <textarea class="form-textarea" id="message" name="message" required placeholder="Approximate number of items, RCDs, site access notes"></textarea>
+              <p class="form-hint">Include anything that helps us quote precisely—number of appliances, locations, or special requirements.</p>
+            </div>
+          </div>
+
+          <div class="button-row pad-top">
+            <button type="submit" class="btn-primary" id="contact-submit">Send request</button>
+            <a href="tel:0458104057" class="btn-secondary">Call us instead</a>
+          </div>
+        </form>
+
+        <div class="stack-lg" data-reveal>
+          <div class="info-card">
+            <h3>Response guarantee</h3>
+            <ul class="check-list">
+              <li>Quotes and scheduling options within 24 hours</li>
+              <li>7-day service with after-hours availability</li>
+              <li>Fully licensed, insured, and calibrated technicians</li>
+              <li>Digital compliance pack emailed after each visit</li>
+            </ul>
+          </div>
+
+          <div class="info-card map-card">
+            <h3>Service area</h3>
+            <p class="text-muted u-mb-sm">Sunshine Coast &amp; surrounding regions. Not sure if we cover your site? Send the address and we’ll confirm.</p>
             <iframe
-              title="Map"
-              class="w-full h-64"
+              title="Sunshine Coast service area map"
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d456619.75077389815!2d152.74449481457413!3d-26.60548866397166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b937fb66d7d48ed%3A0x302a35af3deaf50!2sSunshine%20Coast%20QLD!5e0!3m2!1sen!2sau!4v1756775394574!5m2!1sen!2sau">
             </iframe>
           </div>
-        </div>
 
-        <div class="text-sm text-text-muted">
-          <strong class="text-text">Test & Tag — It’s the law:</strong> persons in control of workplaces must ensure plug-in electrical equipment and RCDs are safe and appropriately inspected, tested and tagged by a competent person at the required intervals.
+          <div class="notice">
+            <strong class="text-strong">Test &amp; Tag — it’s the law:</strong> persons in control of workplaces must ensure plug-in electrical equipment and RCDs are safe and inspected by a competent person at the required intervals.
+          </div>
         </div>
       </div>
     </div>

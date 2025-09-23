@@ -18,7 +18,7 @@ function injectPartial(outletSel, url, after) {
   const outlet = document.querySelector(outletSel);
   if (!outlet) return Promise.resolve(false);
 
-  return fetch(url, { cache: "no-cache" })
+  return fetch(url)
     .then((res) => {
       if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
       return res.text();
@@ -43,91 +43,96 @@ function initHeaderBehaviors() {
   const mobileMenu = document.querySelector("[data-mobile-menu]");
 
   // Sticky shadow & subtle glassmorphism on scroll
-  function onScroll() {
+  function updateCondensedState() {
     if (!header) return;
-    if (window.scrollY > 6) {
-      header.classList.add("shadow-elev1", "backdrop-blur", "bg-bg/70");
-    } else {
-      header.classList.remove("shadow-elev1", "backdrop-blur", "bg-bg/70");
-    }
+    header.classList.toggle("is-condensed", window.scrollY > 8);
   }
-  on(window, "scroll", onScroll);
-  onScroll();
+  on(window, "scroll", updateCondensedState, { passive: true });
+  updateCondensedState();
 
   // Mobile menu toggle
   if (mobileBtn && mobileMenu) {
+    const setMenuState = (open) => {
+      mobileMenu.setAttribute("data-open", String(open));
+      mobileBtn.setAttribute("aria-expanded", String(open));
+      document.body.classList.toggle("nav-open", open);
+    };
+
     on(mobileBtn, "click", () => {
       const open = mobileMenu.getAttribute("data-open") === "true";
-      mobileMenu.setAttribute("data-open", String(!open));
-      mobileMenu.classList.toggle("pointer-events-none", open);
-      mobileMenu.classList.toggle("opacity-0", open);
-      mobileBtn.setAttribute("aria-expanded", String(!open));
+      setMenuState(!open);
+    });
+
+    mobileMenu.querySelectorAll("a").forEach((link) => {
+      on(link, "click", () => {
+        setMenuState(false);
+      });
+    });
+
+    on(window, "resize", () => {
+      if (window.innerWidth >= 768) {
+        setMenuState(false);
+      }
     });
   }
+}
+
+function markActiveNav() {
+  const header = document.querySelector("[data-header]");
+  if (!header) return;
+
+  const current = window.location.pathname.split("/").pop() || "index.html";
+  const links = header.querySelectorAll(".nav-link");
+
+  links.forEach((link) => {
+    const href = link.getAttribute("href") || "";
+    const normalized = href.split("?")[0];
+    const isHome = normalized === "index.html" && (current === "" || current === "index.html");
+    if (normalized === current || isHome) {
+      link.classList.add("is-active");
+    } else {
+      link.classList.remove("is-active");
+    }
+  });
 }
 
 /* ---------- Reveal on scroll ---------- */
 
 function initRevealOnScroll() {
-  // If already initialized, skip
   if (window.__revealObserver) return;
+
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  const elements = Array.from(document.querySelectorAll("[data-reveal]"));
+  if (!elements.length) return;
+
+  if (prefersReducedMotion) {
+    elements.forEach((el) => el.classList.add("is-visible"));
+    return;
+  }
 
   const observer = new IntersectionObserver(
     (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add("opacity-100", "translate-y-0");
-          observer.unobserve(e.target);
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
         }
       });
     },
     { threshold: 0.12 }
   );
 
-  document.querySelectorAll("[data-reveal]").forEach((el) => {
-    el.classList.add(
-      "opacity-0",
-      "translate-y-3",
-      "transition",
-      "duration-300"
-    );
+  elements.forEach((el, index) => {
+    const delayAttr = el.getAttribute("data-reveal-delay");
+    const delay = delayAttr ? parseInt(delayAttr, 10) : Math.min(index * 70, 280);
+    el.style.transitionDelay = `${delay}ms`;
     observer.observe(el);
   });
 
-  // Mark as initialized to prevent double observers
   window.__revealObserver = observer;
-}
-
-/* ---------- Floating labels ---------- */
-
-function initFloatingLabels() {
-  document.querySelectorAll("[data-float]").forEach((wrap) => {
-    const input = wrap.querySelector("input, textarea");
-    const label = wrap.querySelector("label");
-    if (!input || !label) return;
-
-    const toggle = () => {
-      if (input.value) {
-        label.classList.add(
-          "-translate-y-3",
-          "text-text-muted",
-          "text-xs",
-          "opacity-90"
-        );
-      } else {
-        label.classList.remove(
-          "-translate-y-3",
-          "text-text-muted",
-          "text-xs",
-          "opacity-90"
-        );
-      }
-    };
-
-    on(input, "input", toggle);
-    on(input, "blur", toggle);
-    toggle();
-  });
 }
 
 /* ---------- Footer helper ---------- */
@@ -144,6 +149,7 @@ function bootInlineHeaderIfPresent() {
   // If a header is already in the HTML (not injected), bind behaviors
   if (document.querySelector("[data-header]")) {
     initHeaderBehaviors();
+    markActiveNav();
   }
 }
 
@@ -157,7 +163,8 @@ function bootInlineFooterIfPresent() {
 function injectHeaderAndFooter() {
   // Try to inject header; if no placeholder is found, this resolves false and we just keep the inline one.
   injectPartial("[data-header-include]", "partials/header.html", () => {
-    initHeaderBehaviors(); // rebind after header lands in DOM
+    initHeaderBehaviors();
+    markActiveNav();
   }).then((injected) => {
     if (!injected) bootInlineHeaderIfPresent();
   });
@@ -173,7 +180,6 @@ function injectHeaderAndFooter() {
 function boot() {
   injectHeaderAndFooter();
   initRevealOnScroll();
-  initFloatingLabels();
 }
 
 // Run after DOM is ready

@@ -1,110 +1,171 @@
 <!doctype html>
-<html lang="en" class="dark bg-bg text-text">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Services — ADCD Test & Tag</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        container: { center: true, padding: '1rem', screens: { '2xl': '1200px' } },
-        extend: {
-          colors: {
-            bg:'#0F0F0F', surface:'#151515','surface-alt':'#1B1B1B',
-            text:'#FFFFFF','text-muted':'#CFCFCF', border:'#2A2A2A',
-            accent:{DEFAULT:'#e25825',hover:'#f06b3a',on:'#0B0B0B'}
-          },
-          fontFamily:{ display:['Inter','Helvetica Neue','Arial','sans-serif'], body:['Inter','Helvetica Neue','Arial','sans-serif'] },
-          fontSize:{ h2:['36px',{lineHeight:'1.15',letterSpacing:'0.02em'}], h3:['24px',{lineHeight:'1.2'}], base:['16px',{lineHeight:'1.7'}] },
-          boxShadow:{ elev1:'0 4px 14px rgba(0,0,0,0.35)', focus:'0 0 0 2px rgba(226,88,37,0.45)' },
-          transitionTimingFunction:{ brand:'cubic-bezier(0.22, 1, 0.36, 1)' },
-          transitionDuration:{ brand:'220ms' },
-          borderRadius:{ sm:'4px', md:'6px' }
-        }
-      }
-    }
-  </script>
-  <style type="text/tailwindcss">
-    @layer components {
-      .btn-primary { @apply inline-flex items-center gap-2 bg-accent text-accent-on font-extrabold uppercase rounded-sm px-7 py-3 transition-transform duration-brand ease-brand hover:bg-accent-hover hover:-translate-y-px focus:shadow-focus; }
-      .btn-secondary { @apply inline-flex items-center gap-2 border border-white text-text font-bold uppercase rounded-sm px-7 py-3 hover:bg-white/5 transition duration-brand ease-brand; }
-      .nav-link { @apply uppercase text-sm font-bold tracking-wide hover:text-accent transition-colors duration-brand ease-brand; }
-      .card { @apply bg-surface rounded-md p-8 border border-border hover:shadow-elev1 hover:border-accent transition duration-brand ease-brand; }
-      .h2 { @apply font-display font-extrabold uppercase text-h2; }
-      .h3 { @apply font-display font-extrabold uppercase text-h3; }
-      .rule-accent { @apply h-3 bg-accent; }
-    }
-  </style>
+  <meta name="description" content="Explore ADCD Test & Tag services for Sunshine Coast workplaces — appliance testing, RCD checks, compliance reporting, and flexible scheduling." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
 </head>
-<body class="min-h-screen bg-bg text-text">
+<body>
   <div data-header-include></div>
 
   <main>
-    <section class="container py-12 md:py-16">
-      <div class="mb-8">
-        <h2 class="h2">Test & Tag Services</h2>
-        <div class="rule-accent mt-3"></div>
-      </div>
-
-      <!-- 24/7 CTA banner -->
-      <div class="mb-8 rounded-md border border-accent bg-accent/10 p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <p class="font-semibold">7 days • After-hours • No call-out fees • Per-item pricing</p>
-        <div class="flex gap-3">
-          <a href="tel:0458104057" class="btn-primary">Call Now</a>
-          <a href="contact.html" class="btn-secondary">Obligation-Free Quote</a>
+    <section class="section section--pad-bottom-lg">
+      <div class="container grid-two-uneven" data-reveal>
+        <div class="stack-md">
+          <span class="eyebrow">Our services</span>
+          <h1 class="hero-title">Test &amp; tag programs shaped around your workplace</h1>
+          <p class="lead">From one-off compliance checks to rolling maintenance schedules, we bring calibrated equipment, licensed technicians, and digital reporting to every visit.</p>
+          <div class="button-row">
+            <a href="contact.html" class="btn-primary">Book a site assessment</a>
+            <a href="tel:0458104057" class="btn-secondary">Chat with us</a>
+          </div>
+        </div>
+        <div class="info-card">
+          <h3>Quick facts</h3>
+          <ul class="check-list">
+            <li>Licensed Queensland technicians</li>
+            <li>Traceable calibration certificates</li>
+            <li>7-day availability, including after-hours</li>
+            <li>Digital registers + next-test reminders</li>
+          </ul>
         </div>
       </div>
+    </section>
 
-      <!-- Service grid -->
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <article class="card" data-reveal>
-          <div class="mb-4 w-10 h-10 rounded-sm bg-accent flex items-center justify-center">🔌</div>
-          <h3 class="h3 mb-2">Appliance Test & Tag</h3>
-          <p class="text-text-muted mb-4">Inspection and testing of plug-in electrical equipment with compliant tags and records.</p>
-          <a href="contact.html" class="text-sm font-bold uppercase hover:text-accent">Learn More →</a>
-        </article>
-
-        <article class="card" data-reveal>
-          <div class="mb-4 w-10 h-10 rounded-sm bg-accent flex items-center justify-center">🧲</div>
-          <h3 class="h3 mb-2">RCD / Safety Switch Testing</h3>
-          <p class="text-text-muted mb-4">Trip-time tests and logs for fixed and portable RCDs to meet workplace obligations.</p>
-          <a href="contact.html" class="text-sm font-bold uppercase hover:text-accent">Learn More →</a>
-        </article>
-
-        <article class="card" data-reveal>
-          <div class="mb-4 w-10 h-10 rounded-sm bg-accent flex items-center justify-center">📄</div>
-          <h3 class="h3 mb-2">Compliance Reports</h3>
-          <p class="text-text-muted mb-4">Digital records, registers, and reminder schedules for your next testing cycle.</p>
-          <a href="contact.html" class="text-sm font-bold uppercase hover:text-accent">Learn More →</a>
-        </article>
-
-        <article class="card" data-reveal>
-          <div class="mb-4 w-10 h-10 rounded-sm bg-accent flex items-center justify-center">🏢</div>
-          <h3 class="h3 mb-2">Site-Wide Programs</h3>
-          <p class="text-text-muted mb-4">Offices, cafes, clinics, retail & workshops—efficient rollouts with minimal disruption.</p>
-          <a href="contact.html" class="text-sm font-bold uppercase hover:text-accent">Learn More →</a>
-        </article>
-
-        <article class="card" data-reveal>
-          <div class="mb-4 w-10 h-10 rounded-sm bg-accent flex items-center justify-center">🕘</div>
-          <h3 class="h3 mb-2">After-Hours Service</h3>
-          <p class="text-text-muted mb-4">Evenings or weekends so your team and customers aren’t interrupted.</p>
-          <a href="contact.html" class="text-sm font-bold uppercase hover:text-accent">Learn More →</a>
-        </article>
-
-        <article class="card" data-reveal>
-          <div class="mb-4 w-10 h-10 rounded-sm bg-accent flex items-center justify-center">💬</div>
-          <h3 class="h3 mb-2">Per-Item Pricing</h3>
-          <p class="text-text-muted mb-4">Clear, predictable pricing with zero call-out fees and obligation-free quotes.</p>
-          <a href="contact.html" class="text-sm font-bold uppercase hover:text-accent">Learn More →</a>
-        </article>
+    <section class="section section--no-top">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <h2 class="section-title">Core services</h2>
+          <p class="section-subtitle">All programs include visual inspection, electrical testing, durable tagging, and compliance-ready reporting for AS/NZS 3760.</p>
+        </div>
+        <div class="tile-grid three" data-reveal>
+          <article id="appliance-testing" class="tile">
+            <h3>Appliance test &amp; tag</h3>
+            <p>Comprehensive testing for plug-in electrical equipment—computers, tools, kitchen appliances, and more—with location-specific tagging.</p>
+            <ul class="check-list">
+              <li>Flexible scheduling to minimise downtime</li>
+              <li>Colours &amp; intervals matched to your industry</li>
+            </ul>
+          </article>
+          <article id="rcd-testing" class="tile">
+            <h3>RCD &amp; safety switch testing</h3>
+            <p>Trip-time testing for fixed and portable RCDs, with results logged against each board or device for audit visibility.</p>
+            <ul class="check-list">
+              <li>Instant reset and retest where required</li>
+              <li>Load testing with calibrated instruments</li>
+            </ul>
+          </article>
+          <article id="compliance-reports" class="tile">
+            <h3>Digital compliance reporting</h3>
+            <p>Delivered right after the visit—asset registers, failed item reports, and the next scheduled test dates for your WHS files.</p>
+            <ul class="check-list">
+              <li>Secure cloud delivery or on-site USB copy</li>
+              <li>Reminders so you never miss a test window</li>
+            </ul>
+          </article>
+        </div>
       </div>
+    </section>
 
-      <!-- Legal/compliance note -->
-      <div class="mt-10 text-sm text-text-muted">
-        <strong class="text-text">Test & Tag — It’s the Law:</strong> persons in control of workplaces must ensure plug-in electrical equipment and RCDs are safe and appropriately inspected, tested and tagged by a competent, trained person, at the required intervals.
+    <section class="section section--no-top">
+      <div class="container grid-balanced" data-reveal>
+        <div class="info-card">
+          <h3>How a visit runs</h3>
+          <ul class="check-list">
+            <li>Pre-visit confirmation and access coordination</li>
+            <li>Visual inspection &amp; electrical testing with calibrated gear</li>
+            <li>Immediate tagging, noting any failures or hazards</li>
+            <li>Digital compliance pack shared within hours</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h3>Add-on support</h3>
+          <ul class="check-list">
+            <li>Asset labelling &amp; inventory capture</li>
+            <li>Emergency &amp; exit light function checks</li>
+            <li>Custom reporting formats for enterprise systems</li>
+            <li>Multi-site scheduling and reminder management</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--no-top">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <h2 class="section-title">Who we work with</h2>
+          <p class="section-subtitle">Tailored testing windows and documentation for every environment.</p>
+        </div>
+        <div class="feature-grid" data-reveal>
+          <article class="feature-card">
+            <span class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" aria-hidden="true">
+                <rect x="3" y="3" width="7" height="18" rx="1" />
+                <rect x="14" y="7" width="7" height="14" rx="1" />
+                <path d="M6.5 7h0.01" />
+                <path d="M6.5 11h0.01" />
+                <path d="M6.5 15h0.01" />
+                <path d="M17.5 11h0.01" />
+                <path d="M17.5 15h0.01" />
+              </svg>
+            </span>
+            <h3>Offices &amp; co-working</h3>
+            <p>Computers, monitors, chargers, kitchen appliances, and shared equipment tagged outside business hours.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" aria-hidden="true">
+                <path d="M3 6h15v5a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V6z" />
+                <path d="M18 8h1.5a2.5 2.5 0 0 1 0 5H18" />
+                <path d="M5 21h10" />
+              </svg>
+            </span>
+            <h3>Hospitality venues</h3>
+            <p>Front-of-house and kitchen equipment tested between services, with hygiene-sensitive handling.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" aria-hidden="true">
+                <path d="M21 3a5.5 5.5 0 0 0-8 6.3L4.7 17.6a2 2 0 1 0 2.8 2.8l8.3-8.3A5.5 5.5 0 0 0 21 3z" />
+                <path d="m16 7 1 1" />
+              </svg>
+            </span>
+            <h3>Trade &amp; construction</h3>
+            <p>Site sheds, tools, extension leads, and RCDs inspected to meet high-frequency testing intervals.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" aria-hidden="true">
+                <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z" />
+                <path d="M12 8v8" />
+                <path d="M8 12h8" />
+              </svg>
+            </span>
+            <h3>Clinics &amp; education</h3>
+            <p>Medical-grade, laboratory, and classroom equipment handled with care and precise documentation.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--no-top section--pad-bottom-lg">
+      <div class="container" data-reveal>
+        <div class="banner">
+          <div>
+            <h2 class="section-title text-inverse">Need a tailored program or multi-site plan?</h2>
+            <p>We’ll map out asset registers, testing frequencies, and access requirements before we arrive—perfect for facilities managers and franchise networks.</p>
+          </div>
+          <div class="banner-actions">
+            <a href="contact.html" class="btn-primary">Plan my schedule</a>
+            <a href="tel:0458104057" class="btn-secondary">Speak with a technician</a>
+          </div>
+        </div>
       </div>
     </section>
   </main>
