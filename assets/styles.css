@@ -521,7 +521,7 @@ h6 {
 }
 
 .section--pad-bottom-lg {
-  padding-bottom: clamp(4rem, 7vw, 6.2rem);
+  padding-bottom: clamp(2rem, 4vw, 3rem);
 }
 
 .section-header.center {
@@ -840,7 +840,7 @@ h6 {
 /* ---------- Redesigned Footer Section (Alternative Light Theme) ---------- */
 
 .footer {
-  margin-top: 6rem;
+  margin-top: 3rem;
   background-color: var(--color-surface-alt); /* Changed to the light blue-grey */
   color: var(--color-text-muted);
   padding: clamp(3rem, 6vw, 4rem) 0;
