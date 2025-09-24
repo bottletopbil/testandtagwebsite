@@ -167,7 +167,7 @@ h6 {
 .btn-primary {
   background-color: var(--color-accent);
   color: #fff;
-  box-shadow: 0 20px 38px rgba(226, 88, 37, 0.26);
+  /* box-shadow: 0 20px 38px rgba(226, 88, 37, 0.26); */ /* This line has been removed */
 }
 
 .btn-primary:hover,
