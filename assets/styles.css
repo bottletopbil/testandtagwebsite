@@ -1233,26 +1233,45 @@ details.faq-item[open] .faq-icon {
 
 /* ---------- Reveal animation ---------- */
 
+/* Reveal baseline */
 [data-reveal] {
+  --reveal-y: 28px;                /* tweakable offset */
+  --reveal-dur: 560ms;             /* slightly shorter for snappier feel */
+  --reveal-ease: cubic-bezier(0.22, 1, 0.36, 1); /* "standard" easing for UI */
+  --reveal-delay: 0ms;             /* will be set via JS per element */
+
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 480ms cubic-bezier(0.33, 1, 0.68, 1),
-              transform 520ms cubic-bezier(0.33, 1, 0.68, 1);
-  will-change: opacity, transform;
+  transform: translate3d(0, var(--reveal-y), 0);
+  transition:
+    opacity var(--reveal-dur) var(--reveal-ease) var(--reveal-delay),
+    transform var(--reveal-dur) var(--reveal-ease) var(--reveal-delay);
+  backface-visibility: hidden;     /* combats shimmer on some GPUs */
+  filter: saturate(99%);           /* 1% trick nudges GPU compositing without visible change */
+  contain: paint;                  /* isolate paint for smoother compositing */
 }
 
+/* Final state */
 [data-reveal].is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
+  filter: none;
 }
 
+/* Optional: direction variants */
+[data-reveal][data-reveal-from="left"]  { transform: translate3d(-24px, 0, 0); }
+[data-reveal][data-reveal-from="right"] { transform: translate3d(24px, 0, 0);  }
+[data-reveal][data-reveal-from="up"]    { transform: translate3d(0, -24px, 0); }
+
+/* Respect user preferences */
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+    filter: none !important;
   }
 }
+
 
 /* ---------- Utility layout helpers ---------- */
 

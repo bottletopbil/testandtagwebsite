@@ -101,39 +101,97 @@ function markActiveNav() {
 function initRevealOnScroll() {
   if (window.__revealObserver) return;
 
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
-
   const elements = Array.from(document.querySelectorAll("[data-reveal]"));
   if (!elements.length) return;
 
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (prefersReducedMotion) {
     elements.forEach((el) => el.classList.add("is-visible"));
     return;
   }
 
+  // Stagger logic: use data-reveal-group to stagger only within a group (optional)
+  const groups = new Map();
+  elements.forEach((el) => {
+    const group = el.getAttribute("data-reveal-group") || "__default__";
+    if (!groups.has(group)) groups.set(group, []);
+    groups.get(group).push(el);
+  });
+
+  // Pre-assign delays (write once) & prep will-change just-in-time
+  groups.forEach((els) => {
+    els.forEach((el, index) => {
+      const attrDelay = el.getAttribute("data-reveal-delay");
+      const autoDelay = Math.min(index * 70, 280); // your stagger, capped
+      const delay = attrDelay ? parseInt(attrDelay, 10) : autoDelay;
+      el.style.setProperty("--reveal-delay", `${delay}ms`);
+    });
+  });
+
+  // IntersectionObserver: trigger slightly early & with a tiny threshold for stability
   const observer = new IntersectionObserver(
     (entries) => {
+      // Batch DOM writes in rAF to avoid layout thrash
+      const toReveal = [];
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
+          const el = entry.target;
+          // Just-in-time will-change: set before transition, remove after
+          el.style.willChange = "opacity, transform";
+          toReveal.push(el);
+          observer.unobserve(el);
         }
       });
+
+      if (toReveal.length) {
+        requestAnimationFrame(() => {
+          toReveal.forEach((el) => {
+            el.classList.add("is-visible");
+            // Clean up will-change after transition ends to avoid memory pressure
+            const cleanup = () => {
+              el.style.willChange = "";
+              el.removeEventListener("transitionend", cleanup);
+            };
+            el.addEventListener("transitionend", cleanup, { once: true });
+          });
+        });
+      }
     },
-    { threshold: 0.12 }
+    {
+      root: null,
+      rootMargin: "0px 0px -10% 0px", // reveal just before the element fully scrolls in
+      threshold: 0.08,                // small, stable threshold
+    }
   );
 
-  elements.forEach((el, index) => {
-    const delayAttr = el.getAttribute("data-reveal-delay");
-    const delay = delayAttr ? parseInt(delayAttr, 10) : Math.min(index * 70, 280);
-    el.style.transitionDelay = `${delay}ms`;
-    observer.observe(el);
+  // Observe all targets
+  elements.forEach((el) => observer.observe(el));
+
+  // Handle elements already in view on load (Safari/iOS edge cases)
+  requestAnimationFrame(() => {
+    elements.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      if (rect.top < vh * 0.92 && rect.bottom > 0) {
+        el.style.willChange = "opacity, transform";
+        el.classList.add("is-visible");
+        const cleanup = () => { el.style.willChange = ""; el.removeEventListener("transitionend", cleanup); };
+        el.addEventListener("transitionend", cleanup, { once: true });
+        observer.unobserve(el);
+      }
+    });
   });
 
   window.__revealObserver = observer;
 }
+
+// Auto-init on DOM ready (safe no-op if called multiple times)
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initRevealOnScroll, { once: true });
+} else {
+  initRevealOnScroll();
+}
+
 
 /* ---------- Footer helper ---------- */
 
